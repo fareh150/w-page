@@ -1,1 +1,62 @@
-<p>navbar works!</p>
+<nav class="bg-white shadow-lg">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex justify-between">
+      <div class="flex space-x-7">
+        <div>
+          <!-- Website Logo -->
+          <a
+          [routerLink]="logoLink()"
+          class="flex items-center py-4 px-2"
+          >
+            @if (logoUrl())
+            {
+              <img [src]="logoUrl()" alt="Logo" class="h-8 w-8 mr-2">
+            }
+            @if (logoText())
+            {
+              <span class="font-semibold text-gray-500 text-lg">{{logoText()}}</span>
+            }
+          </a>
+        </div>
+      </div>
+      <!-- Primary Navbar items -->
+      <div class="hidden md:flex items-center space-x-1">
+        @for (tab of tabs; track tab.name)
+        {
+            <a
+            [routerLink]="tab.link"
+            routerLinkActive="underline"
+            class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 hover:brightness-125 transition duration-300"
+            >
+            {{ tab.name }}
+            </a>
+        }
+      </div>
+      <!-- Mobile menu button -->
+      <div class="md:hidden flex items-center">
+        <button (click)="toggleOpen()" class="outline-none mobile-menu-button">
+          <svg class="w-6 h-6 text-gray-500 hover:text-blue-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- mobile menu -->
+  <div [class]="open ? 'md:hidden' : 'hidden'">
+    <ul>
+      @for (tab of tabs; track tab.name)
+      {
+        <li>
+          <a
+          [routerLink]="tab.link"
+          routerLinkActive="bg-blue-500 text-white"
+          class="block text-sm px-2 py-4 hover:bg-blue-500 transition duration-300"
+          >
+          {{ tab.name }}
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</nav>
