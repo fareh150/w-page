@@ -1,28 +1,12 @@
-import { Component, signal } from '@angular/core';
-import { NavbarComponent } from '../components/navbar/navbar.component';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-main-page',
-  imports: [
-    NavbarComponent,
-  ],
+  imports: [],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css'
 })
 export class MainPageComponent {
-
-  tabs =
-  [
-    { name: 'Home', link: '/' },
-    { name: 'Timer', link: '/timer' },
-  ];
-
-  logoData =
-  {
-    url: '',
-    text: 'Alba y Fareh',
-    link: '',
-  };
 
   constructor() { }
 
