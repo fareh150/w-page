@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import TimerComponent from './timer/timer.component';
-import { MainPageComponent } from './main-page/main-page.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
 
 export const routes: Routes = [
   {
