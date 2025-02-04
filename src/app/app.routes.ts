@@ -5,12 +5,11 @@ import { MainPageComponent } from './main-page/main-page.component';
 export const routes: Routes = [
   {
     path: '',
-    component: TimerComponent
-  , data: { date: '2023-12-31' }
+    component: MainPageComponent,
   },
   {
-    path: 'main',
-    component: MainPageComponent,
+    path: 'timer',
+    component: TimerComponent,
   },
   {
     path: '**',

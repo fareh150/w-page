@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 
 @Component({
@@ -10,5 +10,20 @@ import { NavbarComponent } from '../components/navbar/navbar.component';
   styleUrl: './main-page.component.css'
 })
 export class MainPageComponent {
+
+  tabs =
+  [
+    { name: 'Home', link: '/' },
+    { name: 'Timer', link: '/timer' },
+  ];
+
+  logoData =
+  {
+    url: '',
+    text: 'Alba y Fareh',
+    link: '',
+  };
+
+  constructor() { }
 
 }
