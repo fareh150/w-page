@@ -1,9 +1,15 @@
-<app-navbar
+<div class="flex flex-col min-h-screen">
+  <app-navbar
   [tabs]="tabs"
   [logoData]="logoData"
-/>
-<router-outlet/>
-<app-footer
-[customText]="footerText"
-[customYear]="footerYear"
-/>
+  />
+
+  <div class="flex-grow">
+    <router-outlet />
+  </div>
+
+  <app-footer
+  [customText]="footerText"
+  [customYear]="footerYear"
+  />
+</div>
