@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { LayoutContainerComponent } from '../../components/layout-container/layout-container.component';
 import { ImageBannerComponent } from '../../components/image-banner/image-banner.component';
 import { FieldSeparatorComponent } from '../../components/field-separator/field-separator.component';
 import { ImageTextBlockComponent } from '../../components/image-text-block/image-text-block.component';
+import { TitleWithContentComponent } from '../../components/title-with-content/title-with-content.component';
+import { CountdownService } from '../../services/countdown.service';
 
 @Component({
   selector: 'app-main-page',
@@ -10,35 +12,42 @@ import { ImageTextBlockComponent } from '../../components/image-text-block/image
     LayoutContainerComponent,
     ImageBannerComponent,
     FieldSeparatorComponent,
-    ImageTextBlockComponent
+    ImageTextBlockComponent,
+    TitleWithContentComponent
   ],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css'
 })
-export class MainPageComponent {
+export class MainPageComponent implements OnInit {
 
-  date = '2010-05-01';
-  getDaysSinceDate(): number {
-    const currentDate = new Date();
-    const startDate = new Date(this.date);
-    const timeDifference = currentDate.getTime() - startDate.getTime();
-    const daysDifference = Math.floor(timeDifference / (1000 * 3600 * 24));
-    return daysDifference;
+  private countdown = inject(CountdownService);
+
+  targetDate = new Date('2026-05-01T00:00:00');
+  elapsedYears = signal<number>(0);
+  elapsedMonths = signal<number>(0);
+  elapsedDays = signal<number>(0);
+  elapsedHours = signal<number>(0);
+  elapsedMinutes = signal<number>(0);
+  elapsedSeconds = signal<number>(0);
+
+  startDateTime = new Date('2010-05-01T00:00:00');
+  currentDays = signal<number>(0);
+
+  ngOnInit(): void {
+    setInterval(() => this.getTimeData(), 1000);
   }
 
-  bannerTitle = '¡Nos Casamos!';
-  bannerImageUrl = 'https://images.unsplash.com/photo-1507915977619-6ccfe8003ae6?q=80&w=2667&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+  getTimeData() {
+    const { years, months, days, hours, minutes, seconds } = this.countdown.getTimeElapsed(this.targetDate);
+     this.elapsedYears.set(years);
+     this.elapsedMonths.set(months);
+     this.elapsedDays.set(days);
+     this.elapsedHours.set(hours);
+     this.elapsedMinutes.set(minutes);
+     this.elapsedSeconds.set(seconds);
 
-  firstBlockTitle = 'De ese primer encuentro a este gran día!';
-  firstBlockImageUrl = 'https://images.unsplash.com/photo-1601805504386-ad769c7522f9?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
-  fisrtBlockText = `
-  Hace exactamente ${this.getDaysSinceDate()} días que nos cruzamos en el colegio y, tras tantos momentos compartidos, aquí estamos, planeando nuestra boda.
-
-  Después de hablar de casarnos, Alba se adelantó y lanzó la gran pregunta en nuestro parque de siempre. La respuesta fue sí.
-
-  A lo largo de los años, hemos aprendido que lo mejor es vivir juntos… incluso cuando alguien se come la última loncha de jamón.
-
-  ¡Y ahora, después de todo este tiempo, nos casamos!
-  `;
-
+    const currentDays = this.countdown.getDaysElapsed(this.startDateTime);
+    this.currentDays.set(currentDays);
+  }
+ //https://images.unsplash.com/photo-1466684921455-ee202d43c1aa?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 }

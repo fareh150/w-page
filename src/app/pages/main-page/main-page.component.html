@@ -1,15 +1,70 @@
 <app-layout-container>
   <app-image-banner
-  [imageUrl]="bannerImageUrl"
-  [title]="bannerTitle"
+  imageUrl="https://images.unsplash.com/photo-1507915977619-6ccfe8003ae6?q=80&w=2667&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  title="Nos Casamos!"
   />
   <app-field-separator/>
+
   <app-image-text-block
-  [title]="firstBlockTitle"
-  [imageUrl]="firstBlockImageUrl"
-  [text]="fisrtBlockText">
-</app-image-text-block>
-<app-field-separator/>
+  title="De ese primer encuentro a este gran día!"
+  imageUrl="https://images.unsplash.com/photo-1601805504386-ad769c7522f9?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  [text]="'Hace exactamente ' + this.currentDays() + ' días que nos cruzamos en el colegio y, tras tantos momentos compartidos, aquí estamos, planeando nuestra boda. Después de hablar de casarnos, Alba se adelantó y lanzó la gran pregunta en nuestro parque de siempre. La respuesta fue sí. Después de tantos años juntos, sabemos que lo mejor de la vida es celebrar cada instante con quienes más queremos… ¡y esta vez, toca celebrarlo a lo grande! ¡Nos casamos!'">
+  </app-image-text-block>
+  <app-field-separator/>
+  <app-image-text-block
+  [imageRight]="true"
+  imageUrl="https://images.unsplash.com/photo-1466684921455-ee202d43c1aa?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  >
+    <div class="text-center">
+      <h2 class="text-2xl font-bold mb-4 md:text-xl">Cuenta atrás para el gran día</h2>
+      <p class="text-lg mb-2 md:text-base">Fecha estimada: <span class="font-semibold">1-5-2026</span></p>
+      <ul class="flex flex-row justify-center space-x-4 text-sm lg:text-lg">
+      @if (this.elapsedYears() > 0)
+      {
+        <li class="flex flex-col items-center">
+          <span class="font-semibold">{{ this.elapsedYears() }}</span>
+          <span>Año</span>
+        </li>
+      }
+      <li class="flex flex-col items-center">
+        <span class="font-semibold">{{ this.elapsedMonths() }}</span>
+        <span>Meses</span>
+      </li>
+      <li class="flex flex-col items-center">
+        <span class="font-semibold">{{ this.elapsedDays() }}</span>
+        <span>Días</span>
+      </li>
+      <li class="flex flex-col items-center">
+        <span class="font-semibold">{{ this.elapsedHours() }}</span>
+        <span>Horas</span>
+      </li>
+      <li class="flex flex-col items-center">
+        <span class="font-semibold">{{ this.elapsedMinutes() }}</span>
+        <span>Minutos</span>
+      </li>
+      <li class="flex flex-col items-center">
+        <span class="font-semibold">{{ this.elapsedSeconds() }}</span>
+        <span>Segundos</span>
+      </li>
+      </ul>
+    </div>
+  </app-image-text-block>
+
+  <app-field-separator/>
+  <!-- Mapa -->
+  <app-title-with-content
+  title="Lugar del evento (proximamente más información)"
+  >
+  <!-- componentizar este div -->
+    <div style="width: 100%; height: 0; padding-bottom: 56.25%; position: relative;">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d194347.47826972432!2d-3.844344322705914!3d40.43809861043932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422997800a3c81%3A0xc436dec1618c2269!2sMadrid!5e0!3m2!1ses!2ses!4v1738750197039!5m2!1ses!2ses"
+      style="border:0; width: 100%; height: 100%; position: absolute; top: 0; left: 0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </app-title-with-content>
 
 
 </app-layout-container>
