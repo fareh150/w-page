@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { TimeElapsed, YearsMonthsDaysElapsed } from '../interfaces/countdown.interface';
-import { differenceInYears, differenceInMonths, differenceInDays, differenceInHours, differenceInMinutes, differenceInSeconds } from 'date-fns';
 
 @Injectable({
   providedIn: 'root'
